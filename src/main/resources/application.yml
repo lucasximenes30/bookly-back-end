@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: booknotes-api
+
+  datasource:
+    url: jdbc:postgresql://db.srzzhbzughrnsqzftpxe.supabase.co:5432/postgres?sslmode=require
+    username: postgres
+    password: BgSJW2MTTokwyxuS
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
