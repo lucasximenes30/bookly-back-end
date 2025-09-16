@@ -3,8 +3,8 @@ package com.bookly.bookly_back_end.controller;
 
 import com.bookly.bookly_back_end.model.Book;
 import com.bookly.bookly_back_end.model.Note;
-import com.bookly.bookly_back_end.repository.NoteRepository;
 import com.bookly.bookly_back_end.service.BookService;
+import com.bookly.bookly_back_end.service.NoteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class BookController {
     @Autowired
     public BookService bookService;
     @Autowired
-    public NoteRepository noteRepository;
+    public NoteService noteService;
 
     @PostMapping("/{isbn}")
     public Book createBook(@PathVariable String isbn) {
@@ -38,11 +38,21 @@ public class BookController {
         note.setBook(new Book());
         note.getBook().setId(id);
         note.setContent(content);
-        return noteRepository.save(note);
+        return noteService.createNote(note);
     }
 
     @GetMapping("/{id}/notes")
     public List<Note> listNotes(@PathVariable UUID id) {
-        return noteRepository.findByBookId(id);
+        return noteService.getNotesByBookId(id);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable UUID id){
+        bookService.deleteById(id);
+    }
+
+    @DeleteMapping("/all")
+    public void deleteAll(){
+        bookService.deleteAll();
     }
 }

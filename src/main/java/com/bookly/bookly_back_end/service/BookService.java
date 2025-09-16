@@ -7,6 +7,7 @@ import com.bookly.bookly_back_end.response.GoogleBookResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -53,5 +54,13 @@ public class BookService {
     }
     public List<Book> getAll(){
         return bookRepository.findAll();
+    }
+
+    public void deleteById(@PathVariable UUID id){
+        bookRepository.deleteById(id);
+    }
+
+    public void deleteAll(){
+        bookRepository.deleteAll();
     }
 }

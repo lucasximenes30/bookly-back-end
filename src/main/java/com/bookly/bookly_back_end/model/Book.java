@@ -9,17 +9,19 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "Livro")
 public class Book {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(unique = true, nullable = false)
     private String isbn;
 
     private String title;
 
-    private String authors; // ex: "Autor 1, Autor 2"
+    private String authors;
 
     private String publisher;
 
