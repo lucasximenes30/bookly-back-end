@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -31,4 +33,8 @@ public class Book {
     private String description;
 
     private String thumbnailUrl;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<CollectionBooks> collections = new HashSet<>();
+
 }

@@ -14,7 +14,8 @@ import java.util.UUID;
 public class Note {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "book_id")
