@@ -37,7 +37,7 @@ public class BookService {
             throw new RuntimeException("Livro não encontrado na Google Books API");
         }
 
-        GoogleBookResponse.VolumeInfo info = response.getItems().get(0).getVolumeInfo();
+        GoogleBookResponse.VolumeInfo info = response.getItems().getFirst().getVolumeInfo();
 
         // cria entidade Book
         Book book = new Book();
@@ -48,6 +48,7 @@ public class BookService {
         book.setPublisher(info.getPublisher());
         book.setPublishedDate(info.getPublishedDate());
         book.setDescription(info.getDescription());
+        book.setFavorite(book.isFavorite());
         book.setThumbnailUrl(info.getImageLinks() != null ? info.getImageLinks().getThumbnail() : null);
 
         return bookRepository.save(book);

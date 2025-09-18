@@ -32,6 +32,8 @@ public class Book {
     @Column(length = 2000)
     private String description;
 
+    private boolean favorite;
+
     private String thumbnailUrl;
 
     @ManyToMany(mappedBy = "books")
